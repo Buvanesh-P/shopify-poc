@@ -23,13 +23,13 @@ default: &default
 
 development:
   <<: *default
-  database: shopify_app_v2_development
+  database: <%= ENV["DEVELOPMENT_DATABASE"] %>
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
   # When left blank, postgres will use the default role. This is
   # the same name as the operating system user running Rails.
-  #username: shopify_app_v2
+  #username: eboxapp
 
   # The password associated with the postgres role (username).
   #password:
@@ -57,7 +57,7 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: shopify_app_v2_test
+  database: <%= ENV["TEST_DATABASE"] %> 
 
 # As with config/credentials.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -81,6 +81,6 @@ test:
 #
 production:
   <<: *default
-  database: shopify_app_v2_production
-  username: shopify_app_v2
-  password: <%= ENV["SHOPIFY_APP_V2_DATABASE_PASSWORD"] %>
+  database: <%= ENV["PRODUCTION_DATABASE"] %>
+  username:  <%= ENV["DATABASE_USERNAME"] %>
+  password: <%= ENV["DATABASE_PASSWORD"] %>
