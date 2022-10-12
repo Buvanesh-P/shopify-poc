@@ -1,8 +1,9 @@
 class Shopify::ProductsController < ApplicationController
+  skip_before_action :verify_authenticity_token
   require 'net/http'
   require 'uri'
 
-  def index
+  def create
     shopify_access_token = ENV['Shopify_Access_Token']
     shop_name = ENV['Shop_Name']
 
