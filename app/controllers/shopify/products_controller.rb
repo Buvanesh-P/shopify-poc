@@ -11,19 +11,11 @@ class Shopify::ProductsController < ApplicationController
     http = Net::HTTP.new(uri.host, uri.port)
     http.use_ssl = true if uri.instance_of? URI::HTTPS
     request = Net::HTTP::Post.new(uri.request_uri)
-
-    request.body = {
-      "product": {
-        "title": 'Sample Product 2',
-        "body_html": '<strong>Sample product for shopify test</strong>',
-        "vendor": 'Share and Remember2',
-        "product_type": 'Book'
-
-      }
-    }.to_json
+    request.body = params.to_json
     request['Content-Type'] = 'application/json'
     request['X-Shopify-Access-Token'] = shopify_access_token
 
     @response = http.request(request)
+    render json: @response.body
   end
 end
