@@ -6,5 +6,6 @@ Rails.application.routes.draw do
 
   namespace :shopify do
     resources :products
+    resources :customers
   end
 end
